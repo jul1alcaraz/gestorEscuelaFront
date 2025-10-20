@@ -1,23 +1,38 @@
-import './App.css'
-import Categorias from './pages/categorias/categorias'
-import Cursos from './pages/cursos/Cursos'
-import Home from './pages/home/home'
-import CargarAlumnos from './pages/nuevoAlumnos/CargarAlumnos'
-import TodosLosAlumnos from './pages/TodosLosAlumnos/TodosLosAlumnos'
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/home/home";
+import Categorias from "./pages/categorias/categorias";
+import TodosLosAlumnos from "./pages/todosLosAlumnos/TodosLosAlumnos";
+import Cursos from "./pages/cursos/Cursos";
+import CargarAlumnos from "./pages/nuevoAlumnos/CargarAlumnos";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import "./App.css";
 
+// import { ThemeProvider } from "./context/ThemeContext";
 
-function App() {
+const App = () => {
   return (
-  <div>
-    <Home/>
-    <Categorias/>
-    <TodosLosAlumnos/>
-    <Cursos/>
-    <CargarAlumnos/>
+    <>
+      <Header />
 
-  
-  </div>
-)
-}
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <Home />
+              <Categorias />
+            </>
+          }
+        />
+        <Route path="/TodosLosAlumnos" element={<TodosLosAlumnos />} />
+        <Route path="/Cursos" element={<Cursos />} />
+        <Route path="/Cargar" element={<CargarAlumnos />} />
+      </Routes>
 
-export default App
+      <Footer />
+    </>
+  );
+};
+
+export default App;

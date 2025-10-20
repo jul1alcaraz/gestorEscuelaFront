@@ -8,6 +8,7 @@ import Box from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import { Link } from "react-router-dom";
 
 const VisuallyHiddenInput = styled('input')({
   clip: 'rect(0 0 0 0)',
@@ -42,7 +43,7 @@ const columns = [
     renderCell: (params) => (
       <Box sx={{ display: 'flex', gap: 1 }}>
         <IconButton
-          color="primary"
+          color="secundary"
           size="small"
           onClick={() => handleEdit(params.row)}
         >
@@ -89,10 +90,10 @@ export default function TodosLosAlumnos() {
   return (
     <div>
         <Button
-      component="label"
-      variant="contained"
-    
+      component={Link} to="/CargarAlumnos"
+      variant="contained"  
       startIcon={<CloudUploadIcon />}
+      
     >
       Cargar nuevos alumnos
       <VisuallyHiddenInput

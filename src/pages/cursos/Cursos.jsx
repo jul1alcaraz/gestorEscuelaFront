@@ -15,7 +15,7 @@ export default function Cursos() {
         flexWrap: "wrap", // Para que se adapte en pantallas pequeñas
       }}
     >
-      <Card sx={{ maxWidth: 345, flex: "1 1 300px" }}>
+      <Card className="card" sx={{ maxWidth: 345, flex: "1 1 300px" }}>
         <CardActionArea>
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
@@ -25,7 +25,7 @@ export default function Cursos() {
         </CardActionArea>
       </Card>
 
-      <Card sx={{ maxWidth: 345, flex: "1 1 300px" }}>
+<Card className="card" sx={{ maxWidth: 345, flex: "1 1 300px" }}>
         <CardActionArea>
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
@@ -35,7 +35,7 @@ export default function Cursos() {
         </CardActionArea>
       </Card>
 
-      <Card sx={{ maxWidth: 345, flex: "1 1 300px" }}>
+<Card className="card" sx={{ maxWidth: 345, flex: "1 1 300px" }}>
         <CardActionArea>
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
@@ -45,7 +45,8 @@ export default function Cursos() {
         </CardActionArea>
       </Card>
 
-      <Card sx={{ maxWidth: 345, flex: "1 1 300px" }}>
+<Card className="card" sx={{ maxWidth: 345, flex: "1 1 300px" }}>
+
         <CardActionArea>
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
