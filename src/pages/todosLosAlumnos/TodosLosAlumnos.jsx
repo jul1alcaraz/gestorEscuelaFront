@@ -1,15 +1,20 @@
 import * as React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
-import Paper from '@mui/material/Paper';
-import IconButton from '@mui/material/IconButton';
+import {
+  Paper,
+  IconButton,
+  Box,
+  Button,
+  Tooltip,
+  Typography,
+} from '@mui/material';
+import { styled } from '@mui/material/styles';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import Box from '@mui/material/Box';
-import { styled } from '@mui/material/styles';
-import Button from '@mui/material/Button';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
+// 🎯 Input oculto (para carga de archivos si lo necesitás después)
 const VisuallyHiddenInput = styled('input')({
   clip: 'rect(0 0 0 0)',
   clipPath: 'inset(50%)',
@@ -22,95 +27,158 @@ const VisuallyHiddenInput = styled('input')({
   width: 1,
 });
 
+// Funciones de acción
+const handleEdit = (row) => {
+  console.log('Editar:', row);
+};
+
+const handleDelete = (id) => {
+  console.log('Borrar ID:', id);
+};
+
+// Columnas de la tabla
 const columns = [
   { field: 'id', headerName: 'ID', width: 70 },
-  { field: 'firstName', headerName: 'Nombre', width: 130 },
-  { field: 'lastName', headerName: 'Apellido', width: 130 },
-  {
-    field: 'fullName',
-    headerName: 'Mail',
-    description: 'This column has a value getter and is not sortable.',
-    sortable: false,
-    width: 160,
-    valueGetter: (value, row) => `${row.firstName || ''} ${row.lastName || ''}`,
-  },
-  { field: 'course', headerName: 'Curso', width: 130 },
+  { field: 'firstName', headerName: 'Nombre', flex: 1 },
+  { field: 'lastName', headerName: 'Apellido', flex: 1 },
+  { field: 'email', headerName: 'Mail', flex: 1.5 },
+  { field: 'course', headerName: 'Curso', flex: 1 },
   {
     field: 'actions',
     headerName: 'Acciones',
-    width: 150,
+    width: 130,
     sortable: false,
     renderCell: (params) => (
       <Box sx={{ display: 'flex', gap: 1 }}>
-        <IconButton
-          color="secundary"
-          size="small"
-          onClick={() => handleEdit(params.row)}
-        >
-          <EditIcon />
-        </IconButton>
-        <IconButton
-          color="error"
-          size="small"
-          onClick={() => handleDelete(params.row.id)}
-        >
-          <DeleteIcon />
-        </IconButton>
+        <Tooltip title="Editar alumno">
+          <IconButton
+            size="small"
+            sx={{
+              color: 'var(--color-verde-oscuro)',
+              transition: '0.2s',
+              '&:hover': {
+                backgroundColor: 'rgba(0, 128, 0, 0.1)',
+              },
+            }}
+            onClick={() => handleEdit(params.row)}
+          >
+            <EditIcon fontSize="small" />
+          </IconButton>
+        </Tooltip>
+
+        <Tooltip title="Eliminar alumno">
+          <IconButton
+            size="small"
+            sx={{
+              color: '#d32f2f',
+              transition: '0.2s',
+              '&:hover': {
+                backgroundColor: 'rgba(211, 47, 47, 0.1)',
+              },
+            }}
+            onClick={() => handleDelete(params.row.id)}
+          >
+            <DeleteIcon fontSize="small" />
+          </IconButton>
+        </Tooltip>
       </Box>
     ),
   },
 ];
 
+// 📦 Datos de ejemplo
 const rows = [
-  { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
-  { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
-  { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
-  { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16 },
-  { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
-  { id: 6, lastName: 'Melisandre', firstName: null, age: 150 },
-  { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
-  { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
-  { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
+  { id: 1, firstName: 'Jon', lastName: 'Snow', email: 'jon@snow.com', course: 'Historia' },
+  { id: 2, firstName: 'Cersei', lastName: 'Lannister', email: 'cersei@lannister.com', course: 'Política' },
+  { id: 3, firstName: 'Arya', lastName: 'Stark', email: 'arya@stark.com', course: 'Arte' },
 ];
 
-const paginationModel = { page: 0, pageSize: 5 };
-
-// Funciones para manejar las acciones
-const handleEdit = (row) => {
-  console.log('Editar:', row);
-  // Aquí implementas la lógica para editar
-};
-
-const handleDelete = (id) => {
-  console.log('Borrar ID:', id);
-  // Aquí implementas la lógica para borrar
-};
 
 export default function TodosLosAlumnos() {
   return (
-    <div>
-        <Button
-      component={Link} to="/CargarAlumnos"
-      variant="contained"  
-      startIcon={<CloudUploadIcon />}
-      
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        minHeight: '80vh',
+        gap: 3,
+        backgroundColor: '#f9fafb',
+        padding: 3,
+      }}
     >
-      Cargar nuevos alumnos
-      <VisuallyHiddenInput
-        onChange={(event) => console.log(event.target.files)}
-      />
-    </Button>,
-    
-    <Paper sx={{ height: 400, width: '100%' }}>
-      <DataGrid
-        rows={rows}
-        columns={columns}
-        initialState={{ pagination: { paginationModel } }}
-        pageSizeOptions={[5, 10]}
-        checkboxSelection
-        sx={{ border: 0 }}
-      />
-    </Paper>
-</div>
+      {/* Título */}
+      <Typography
+        variant="h2"
+        sx={{
+          fontWeight: 600,
+          color: 'var(--color-rosa)',
+          fontFamily: 'Poppins, sans-serif',
+          textAlign: 'center',
+        }}
+      >
+        Lista de Alumnos
+      </Typography>
+
+      {/* Botón de carga */}
+      <Button
+        component={Link}
+        to="/Cargar"
+        variant="contained"
+        startIcon={<CloudUploadIcon />}
+        sx={{
+          backgroundColor: 'var(--color-verde-oscuro)',
+          color: 'white',
+          textTransform: 'none',
+          fontWeight: 500,
+          borderRadius: 2,
+          px: 3,
+          py: 1,
+          '&:hover': {
+            backgroundColor: 'var(--color-verde-claro)',
+          },
+        }}
+      >
+        Cargar nuevos alumnos
+      </Button>
+
+      {/* Tabla */}
+      <Paper
+        elevation={5}
+        sx={{
+          width: '90%',
+          height: 420,
+          border: '2px solid var(--color-verde-oscuro)',
+          borderRadius: 3,
+          overflow: 'hidden',
+          backgroundColor: 'black',
+        }}
+      >
+        <DataGrid
+          rows={rows}
+          columns={columns}
+          initialState={{
+            pagination: { paginationModel: { page: 0, pageSize: 5 } },
+          }}
+          pageSizeOptions={[5, 10]}
+          checkboxSelection
+          disableRowSelectionOnClick
+          sx={{
+            border: 'none',
+            color: 'var(--color-verde-oscuro)',
+            fontFamily: 'Poppins, sans-serif',
+            '& .MuiDataGrid-columnHeaders': {
+              backgroundColor: 'var(--color-verde-oscuro)',
+              color: 'black',
+              fontWeight: 600,
+            },
+            '& .MuiDataGrid-row:hover': {
+              backgroundColor: 'rgba(0, 128, 0, 0.04)',
+            },
+          }}
+        />
+      </Paper>
+    </Box>
   );
 }

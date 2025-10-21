@@ -6,15 +6,21 @@
   --color-rosa-claro: #fbeff5;
 }
 
-/* 🌍 Estilos generales */
+
 body {
+
   margin: 0;
+  padding: 0;
   font-family: "Poppins", sans-serif;
   background-color: var(--color-rosa-claro);
   color: var(--color-verde-oscuro);
+  padding-top: 84px; 
+  padding-bottom: 60px; 
+  box-sizing: border-box;
 }
 
-/* 🏠 HOME */
+
+/* HOME */
 .home-container {
   text-align: center;
   padding: 4rem 1rem;
@@ -50,6 +56,8 @@ body {
   background-color: var(--color-rosa-claro);
   border: 2px solid var(--color-verde-oscuro);
   color: var(--color-verde-oscuro);
+  
+  
 }
 
 .MuiButton-contained {
@@ -64,7 +72,8 @@ body {
 }
 
 /* 📝 FORMULARIO CARGAR ALUMNOS */
-.radiology-form-container {
+.gestion
+-form-container {
   padding: 2rem;
   margin-top: 2rem;
   background-color: var(--color-verde-claro);
@@ -72,28 +81,30 @@ body {
   border-radius: 10px;
 }
 
-.radiology-subtitle {
+.gestion
+-subtitle {
   color: var(--color-verde-oscuro);
   margin-bottom: 0.5rem;
 }
 
-.radiology-subtitle2 {
+.gestion-subtitle2 {
   color: var(--color-rosa);
   font-size: 1rem;
 }
 
-.radiology-button-success-box {
-  background-color: var(--color-verde-oscuro) !important;
-  color: white !important;
+.gestion-button-success-box {
+  background-color: var(--color-verde-claro) !important;
+  color: black !important;
   border-radius: 8px !important;
   padding: 0.6rem 1.5rem !important;
 }
 
-.radiology-button-success-box:hover {
-  background-color: var(--color-rosa) !important;
+.gestion-button-success-box:hover {
+  background-color: yellow !important;
+  color: black;
 }
 
-/* 🔝 HEADER */
+/* HEADER */
 .MuiAppBar-root {
   background-color: var(--color-verde-oscuro) !important;
   color: white !important;
@@ -108,7 +119,7 @@ body {
   color: white !important;
 }
 
-/* 👣 FOOTER */
+/* FOOTER */
 footer,
 .MuiPaper-root {
   background-color: var(--color-verde-oscuro) !important;
@@ -122,7 +133,7 @@ footer svg,
   color: var(--color-rosa) !important;
 }
 
-/* 📱 MEDIA QUERIES */
+/* MEDIA QUERIES */
 
 /* Móviles: max-width 600px */
 @media (max-width: 600px) {
@@ -189,4 +200,20 @@ footer svg,
   .home-container h1 {
     font-size: 3rem;
   }
+}
+
+.botonDelete {
+  color: #d32f2f !important; 
+}
+
+.botonUpdate {
+  color: #1976d2 !important; 
+}
+
+.botonDelete:hover {
+  background-color: rgba(211, 47, 47, 0.1) !important;
+}
+
+.botonUpdate:hover {
+  background-color: rgba(25, 118, 210, 0.1) !important;
 }

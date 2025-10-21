@@ -54,10 +54,14 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 function Header() {
   return (
-    <AppBar>
+    <AppBar position="fixed"
+      sx={{
+        backgroundColor: "var(--color-verde-oscuro)",
+        zIndex: 1200, // más alto que el footer
+      }}>
       <Toolbar>
         <MenuDrawer />
-      
+
         <Box sx={{ marginLeft: "auto" }}>
           <Search >
             <SearchIconWrapper>

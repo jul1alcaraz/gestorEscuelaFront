@@ -45,7 +45,7 @@ const CargarAlumnos = () => {
     }
   };
 
-  // Manejar cambio del campo "cursos" (múltiple)
+  
   const handleCursosChange = (event) => {
     const { value } = event.target;
     setFormData((prev) => ({
@@ -119,14 +119,18 @@ const CargarAlumnos = () => {
   const cursosOpciones = ["Arte", "Matemática", "Historia", "Ciencias"];
 
   return (
-    <Container>
-      <Paper className="radiology-form-container">
+    <Container sx={{
+        alignItems: 'center',
+        justifyContent: 'center',
+        minHeight: '80vh', 
+      }}>
+      <Paper className="gestion-form-container" >
         <Box sx={{ textAlign: "center" }}>
           <InboxIcon
-            sx={{ fontSize: 48, color: "var(--radiology-yellow)", mb: 2 }}
+            sx={{ fontSize: 88, mb: 2 }}
           />
-          <h2 className="radiology-subtitle">Formulario de Consulta</h2>
-          <p className="radiology-subtitle2">
+          <h2 >Formulario de Consulta</h2>
+          <p>
             Complete el formulario para enviar su consulta.
           </p>
         </Box>
@@ -138,7 +142,8 @@ const CargarAlumnos = () => {
         )}
 
         <Box component="form" onSubmit={handleSubmit} noValidate>
-          <Grid className="radiology-form-grid">
+          <Grid className="gestion
+-form-grid">
             {/* Nombre */}
             <Grid item>
               <TextField
@@ -221,11 +226,11 @@ const CargarAlumnos = () => {
             </Grid>
           </Grid>
 
-          <Grid className="radiology-button-container">
+          <Grid className="gestion-button-container">
             <Box>
               <Button
                 item
-                className="radiology-button-success-box"
+                className="gestion-button-success-box"
                 type="submit"
                 disabled={loading}
                 startIcon={

@@ -13,6 +13,13 @@ export default function Cursos() {
         gap: 2,
         padding: 2,
         flexWrap: "wrap", // Para que se adapte en pantallas pequeñas
+        alignItems: 'center',
+        justifyContent: 'center',
+        
+        
+        minHeight: '80vh',
+        
+  
       }}
     >
       <Card className="card" sx={{ maxWidth: 345, flex: "1 1 300px" }}>

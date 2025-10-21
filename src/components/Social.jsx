@@ -14,7 +14,8 @@ const Social = () => {
         <Link
           href="https://jul1alcaraz.netlify.app/"
           target="_blank"
-          sx={{ my: 2, marginRight: 3, color: "var(--radiology-yellow)" }}
+          sx={{ my: 2, marginRight: 3 
+ }}
         >
           <WorkIcon></WorkIcon>
         </Link>
@@ -24,7 +25,8 @@ const Social = () => {
         <Link
           href="https://github.com/jul1alcaraz"
           target="_blank"
-          sx={{ my: 2, marginRight: 3, color: "var(--radiology-yellow)" }}
+          sx={{ my: 2, marginRight: 3 
+ }}
         >
           <GitHubIcon></GitHubIcon>
         </Link>
@@ -34,7 +36,8 @@ const Social = () => {
         <Link
           href="https://www.linkedin.com/in/jul1alcaraz/"
           target="_blank"
-          sx={{ my: 2, marginRight: 3, color: "var(--radiology-yellow)" }}
+          sx={{ my: 2, marginRight: 3 
+ }}
         >
           <LinkedInIcon></LinkedInIcon>
         </Link>
@@ -44,7 +47,8 @@ const Social = () => {
         <Link
           href="https://www.unlar.edu.ar/"
           target="_blank"
-          sx={{ my: 2, marginRight: 3, color: "var(--radiology-yellow)" }}
+          sx={{ my: 2, marginRight: 3 
+ }}
         >
           <SchoolIcon></SchoolIcon>
         </Link>
