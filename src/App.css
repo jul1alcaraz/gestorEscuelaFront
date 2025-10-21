@@ -71,6 +71,23 @@ body {
   background-color: var(--color-rosa) !important;
 }
 
+.botonDelete {
+  color: #d32f2f !important; 
+}
+
+.botonUpdate {
+  color: #1976d2 !important; 
+}
+
+.botonDelete:hover {
+  background-color: rgba(211, 47, 47, 0.1) !important;
+}
+
+.botonUpdate:hover {
+  background-color: rgba(25, 118, 210, 0.1) !important;
+}
+
+
 /* 📝 FORMULARIO CARGAR ALUMNOS */
 .gestion
 -form-container {
@@ -202,18 +219,17 @@ footer svg,
   }
 }
 
-.botonDelete {
-  color: #d32f2f !important; 
+
+[data-theme="dark"] {
+  --color-verde-oscuro: #00695c;
+  --color-verde-claro: #4db6ac;
+  --color-fondo: #464444;
+  --color-texto: #ffffff;
 }
 
-.botonUpdate {
-  color: #1976d2 !important; 
-}
-
-.botonDelete:hover {
-  background-color: rgba(211, 47, 47, 0.1) !important;
-}
-
-.botonUpdate:hover {
-  background-color: rgba(25, 118, 210, 0.1) !important;
+body {
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+  font-family: 'Poppins', sans-serif;
+  transition: background-color 0.3s, color 0.3s;
 }

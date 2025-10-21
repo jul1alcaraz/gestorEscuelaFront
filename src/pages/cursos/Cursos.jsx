@@ -15,11 +15,7 @@ export default function Cursos() {
         flexWrap: "wrap", // Para que se adapte en pantallas pequeñas
         alignItems: 'center',
         justifyContent: 'center',
-        
-        
-        minHeight: '80vh',
-        
-  
+        minHeight: '80vh', 
       }}
     >
       <Card className="card" sx={{ maxWidth: 345, flex: "1 1 300px" }}>

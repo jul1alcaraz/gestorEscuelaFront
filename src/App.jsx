@@ -6,12 +6,14 @@ import Cursos from "./pages/cursos/Cursos";
 import CargarAlumnos from "./pages/nuevoAlumnos/CargarAlumnos";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import { ThemeProvider } from "./context/ThemeContext"
 import "./App.css";
 
-// import { ThemeProvider } from "./context/ThemeContext";
+
 
 const App = () => {
   return (
+    <ThemeProvider>
     <>
       <Header />
 
@@ -32,6 +34,7 @@ const App = () => {
 
       <Footer />
     </>
+    </ThemeProvider>
   );
 };
 

@@ -7,7 +7,7 @@ import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
 import { orange } from "@mui/material/colors";
 import MenuDrawer from "./MenuDrawer";
-//import BotonTheme from "./BotonTheme";
+import BotonTheme from "./BotonTheme";
 
 
 const Search = styled("div")(({ theme }) => ({
@@ -61,6 +61,11 @@ function Header() {
       }}>
       <Toolbar>
         <MenuDrawer />
+       
+<Box sx={{ ml: "auto" }}>
+  <BotonTheme />
+</Box>
+
 
         <Box sx={{ marginLeft: "auto" }}>
           <Search >

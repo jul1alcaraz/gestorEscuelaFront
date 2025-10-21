@@ -104,7 +104,6 @@ export default function TodosLosAlumnos() {
         justifyContent: 'center',
         minHeight: '80vh',
         gap: 3,
-        backgroundColor: '#f9fafb',
         padding: 3,
       }}
     >
