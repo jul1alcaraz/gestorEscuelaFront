@@ -6,34 +6,42 @@ import Cursos from "./pages/cursos/Cursos";
 import CargarAlumnos from "./pages/nuevoAlumnos/CargarAlumnos";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import { ThemeProvider } from "./context/ThemeContext"
+import { ThemeProvider } from "./context/ThemeContext";
 import "./App.css";
-
-
 
 const App = () => {
   return (
     <ThemeProvider>
-    <>
-      <Header />
+      <>
+        <Header />
 
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <>
-              <Home />
-              <Categorias />
-            </>
-          }
-        />
-        <Route path="/TodosLosAlumnos" element={<TodosLosAlumnos />} />
-        <Route path="/Cursos" element={<Cursos />} />
-        <Route path="/Cargar" element={<CargarAlumnos />} />
-      </Routes>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <Home />
+                <Categorias />
+              </>
+            }
+          />
 
-      <Footer />
-    </>
+          {/* ✅ Listado de alumnos */}
+          <Route path="/TodosLosAlumnos" element={<TodosLosAlumnos />} />
+
+          {/* ✅ Cursos */}
+          <Route path="/Cursos" element={<Cursos />} />
+
+          {/* ✅ Cargar nuevo alumno */}
+          <Route path="/Cargar" element={<CargarAlumnos />} />
+
+          {/* ✅ Nueva ruta para editar alumno */}
+         {/* <Route path="/editar/:id" element={<EditarAlumno />} ></Route>*/}
+         
+        </Routes>
+
+        <Footer />
+      </>
     </ThemeProvider>
   );
 };
