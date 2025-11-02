@@ -49,10 +49,10 @@ export default function AlumnosGrid({ rows, loading, onEdit, onDelete, title }) 
   ];
 
   return (
-    <Box sx={{ width: "90%", margin: "0 auto", mt: 3 }}>
-      <Typography variant="h4" sx={{ mb: 2, textAlign: "center" }}>
+    <Box sx={{ width: "90%", margin: "0 auto" }}>
+      <h1 className="home-container">
         {title}
-      </Typography>
+      </h1>
 
       <Paper sx={{ height: 420, width: "100%" }}>
         <DataGrid

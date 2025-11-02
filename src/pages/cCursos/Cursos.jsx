@@ -5,7 +5,7 @@ import Typography from "@mui/material/Typography";
 import CardActionArea from "@mui/material/CardActionArea";
 import Box from "@mui/material/Box";
 import AlumnosGrid from "../../components/dataGrid/AlumnosDataGrid";
-import { useAlumnosPorCurso } from "../cursos/hook/useAlumnosPorCurso";
+import { useAlumnosPorCurso } from "./hook/useAlumnosPorCurso";
 
 const cursos = ["Matemática", "Historia", "Ciencias", "Arte"];
 
@@ -32,7 +32,7 @@ export default function Cursos() {
         }}
       >
         {cursos.map((curso) => (
-          <Card key={curso} sx={{ maxWidth: 345, flex: "1 1 300px" }}>
+          <Card key={curso} className="card" sx={{ maxWidth: 345, flex: "1 1 300px" }}>
             <CardActionArea onClick={() => setCursoSeleccionado(curso)}>
               <CardContent>
                 <Typography gutterBottom variant="h5" component="div">

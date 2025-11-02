@@ -17,7 +17,7 @@ import {
 } from "@mui/material";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import { Send as SendIcon } from "@mui/icons-material";
-import { useCargarAlumnos } from "../nuevoAlumnos/hook/useCargarAlumno";
+import { useCargarAlumnos } from "./hook/useCargarAlumno";
 
 const CargarAlumnos = () => {
   const {

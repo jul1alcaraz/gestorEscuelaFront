@@ -1,9 +1,8 @@
 import { Routes, Route } from "react-router-dom";
-import Home from "./pages/home/home";
-import Categorias from "./pages/categorias/categorias";
-import TodosLosAlumnos from "./pages/todosLosAlumnos/TodosLosAlumnos";
-import Cursos from "./pages/cursos/Cursos";
-import CargarAlumnos from "./pages/nuevoAlumnos/CargarAlumnos";
+import Home from "./pages/aHome/home";
+import TodosLosAlumnos from "./pages/bTodosLosAlumnos/TodosLosAlumnos";
+import Cursos from "./pages/cCursos/Cursos";
+import CargarAlumnos from "./pages/dNuevoAlumnos/CargarAlumnos";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { ThemeProvider } from "./context/ThemeContext";
@@ -21,7 +20,7 @@ const App = () => {
             element={
               <>
                 <Home />
-                <Categorias />
+               
               </>
             }
           />
