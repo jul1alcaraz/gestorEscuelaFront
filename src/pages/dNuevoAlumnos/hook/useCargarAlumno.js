@@ -56,19 +56,15 @@ export const useCargarAlumnos = () => {
       newErrors.cursos = "Debe seleccionar al menos un curso";
     }
 
-    if (!formData.consulta.trim()) {
-      newErrors.consulta = "La consulta es obligatoria";
-    } else if (formData.consulta.trim().length < 10) {
-      newErrors.consulta = "La consulta debe tener al menos 10 caracteres";
-    }
-
     return newErrors;
   };
 
   const handleSubmit = async (e) => {
+    console.log("Datos enviados:", formData);
     e.preventDefault();
     const formErrors = validateForm();
     if (Object.keys(formErrors).length > 0) {
+      console.log(formErrors);
       setErrors(formErrors);
       return;
     }
@@ -76,6 +72,8 @@ export const useCargarAlumnos = () => {
     setLoading(true);
     setErrors({});
     console.log("Datos enviados:", formData);
+
+    //ACA LLAMAR AL SERVICIO 
 
     setTimeout(() => {
       setLoading(false);

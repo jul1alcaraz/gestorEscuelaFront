@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { deleteAlumno } from '../../../services/SdeleteAlumno'
 
 export const useDeleteAlumno = () => {
   const [openDelete, setOpenDelete] = useState(false);
@@ -17,7 +18,7 @@ export const useDeleteAlumno = () => {
 
   const handleDelete = async () => {
     setSaving(true);
-    // Llamar al service DELETE aquí
+    const response = deleteAlumno(selectedAlumno.id);
     console.log("Eliminando alumno:", selectedAlumno.id);
     setTimeout(() => {
       setSaving(false);

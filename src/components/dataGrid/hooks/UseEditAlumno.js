@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { updateAlumno } from "../../../services/SputAlumnos";
 
 export const useEditAlumno = () => {
   const [openEdit, setOpenEdit] = useState(false);
@@ -24,8 +25,9 @@ export const useEditAlumno = () => {
 
   const handleSave = async () => {
     setSaving(true);
-    // Llamar al service PUT aquí
+    const response = updateAlumno(formData._id, formData);
     console.log("Actualizando alumno:", formData);
+    console.log(response);
     setTimeout(() => {
       setSaving(false);
       setOpenEdit(false);

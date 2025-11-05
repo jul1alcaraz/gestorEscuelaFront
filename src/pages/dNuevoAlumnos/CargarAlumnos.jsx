@@ -140,6 +140,7 @@ const CargarAlumnos = () => {
               <Button
                 className="gestion-button-success-box"
                 type="submit"
+                onClick={handleSubmit}
                 disabled={loading}
                 startIcon={
                   loading ? <CircularProgress size={20} /> : <SendIcon />
