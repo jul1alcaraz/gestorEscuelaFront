@@ -19,6 +19,7 @@ export default function AlumnosDataGrid({ rows, loading, title }) {
     handleFormChange,
     handleSave,
   } = useEditAlumno();
+
   const { openDelete, handleDeleteOpen, handleDelete } = useDeleteAlumno();
 
   const columns = [
@@ -36,7 +37,6 @@ export default function AlumnosDataGrid({ rows, loading, title }) {
           <Tooltip title="Editar alumno">
             <IconButton
               size="small"
-              sx={{ color: "var(--color-verde-oscuro)" }}
               onClick={() => handleEditOpen(params.row)}
             >
               <EditIcon fontSize="small" />
@@ -45,7 +45,6 @@ export default function AlumnosDataGrid({ rows, loading, title }) {
           <Tooltip title="Eliminar alumno">
             <IconButton
               size="small"
-              sx={{ color: "#d32f2f" }}
               onClick={() => handleDeleteOpen(params.row)}
             >
               <DeleteIcon fontSize="small" />
@@ -64,14 +63,14 @@ export default function AlumnosDataGrid({ rows, loading, title }) {
       >
         {title}
       </Typography>
-      <Paper sx={{ height: 420, width: "100%" }}>
+
+      <Paper sx={{ height: 420, width: "100%", position: "relative" }}>
         <DataGrid
           rows={rows}
           columns={columns}
           loading={loading}
-          pageSizeOptions={[5, 10]}
-          checkboxSelection
-          disableRowSelectionOnClick
+          hideFooterPagination // 🔹 quita la paginación
+          hideFooterSelectedRowCount // 🔹 quita el contador de selección
           sx={{
             border: "none",
             "& .MuiDataGrid-columnHeaders": {
@@ -84,6 +83,19 @@ export default function AlumnosDataGrid({ rows, loading, title }) {
             },
           }}
         />
+
+        <Typography
+          variant="body1"
+          sx={{
+            position: "absolute",
+            bottom: 8,
+            left: 16,
+            fontWeight: 500,
+            color: "gray",
+          }}
+        >
+          Total de alumnos: {rows?.length || 0}
+        </Typography>
       </Paper>
 
       <DialogEditAlumno
