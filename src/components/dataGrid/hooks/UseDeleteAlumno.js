@@ -5,6 +5,7 @@ export const useDeleteAlumno = () => {
   const [openDelete, setOpenDelete] = useState(false);
   const [selectedAlumno, setSelectedAlumno] = useState(null);
   const [saving, setSaving] = useState(false);
+    const [isResponseOk, setIsResponseOk] = useState(false);
 
   const handleDeleteOpen = (alumno) => {
     setSelectedAlumno(alumno);
@@ -18,8 +19,8 @@ export const useDeleteAlumno = () => {
 
   const handleDelete = async () => {
     setSaving(true);
-    const response = deleteAlumno(selectedAlumno.id);
-    console.log("Eliminando alumno:", selectedAlumno.id);
+    const response = deleteAlumno(selectedAlumno.nombre);
+    console.log("Eliminando alumno:", selectedAlumno.nombre);
     setTimeout(() => {
       setSaving(false);
       setOpenDelete(false);

@@ -16,7 +16,9 @@ import {
   OutlinedInput,
 } from "@mui/material";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import { Send as SendIcon } from "@mui/icons-material";
+import { Link } from "react-router-dom";
 import { useCargarAlumnos } from "./hook/useCargarAlumno";
 
 const CargarAlumnos = () => {
@@ -135,12 +137,12 @@ const CargarAlumnos = () => {
             </Grid>
           </Grid>
 
+          {/* Botón de enviar */}
           <Grid className="gestion-button-container">
             <Box>
               <Button
                 className="gestion-button-success-box"
                 type="submit"
-                onClick={handleSubmit}
                 disabled={loading}
                 startIcon={
                   loading ? <CircularProgress size={20} /> : <SendIcon />
@@ -152,6 +154,27 @@ const CargarAlumnos = () => {
           </Grid>
         </Box>
       </Paper>
+
+      {/* 🔽 Botón para ir a Todos los Alumnos */}
+      <Box sx={{ display: "flex", justifyContent: "center", mt: 3 }}>
+        <Button
+          component={Link}
+          to="/TodosLosAlumnos"
+          variant="contained"
+          startIcon={<CloudUploadIcon />}
+          sx={{
+            backgroundColor: "var(--color-verde-oscuro)",
+            "&:hover": { backgroundColor: "var(--color-verde-claro)" },
+            color: "white",
+            fontWeight: 500,
+            textTransform: "none",
+            px: 4,
+            py: 1.5,
+          }}
+        >
+          Ver todos los alumnos
+        </Button>
+      </Box>
     </Container>
   );
 };

@@ -7,7 +7,7 @@ export default function DialogDeleteAlumno({ open, onClose, alumno, saving, onDe
       <DialogTitle>Eliminar Alumno</DialogTitle>
 
       <DialogContent>
-        <Typography>¿Estás seguro de eliminar a <b>{alumno?.apellido}</b>?</Typography>
+        <Typography>¿Estás seguro de eliminar a <b>{alumno?.nombre}</b>?</Typography>
       </DialogContent>
       
       <DialogActions>
