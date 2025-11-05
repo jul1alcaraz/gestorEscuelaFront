@@ -87,11 +87,11 @@ const CargarAlumnos = () => {
               <TextField
                 fullWidth
                 label="Correo electrónico"
-                name="mail"
-                value={formData.mail}
+                name="email"
+                value={formData.email}
                 onChange={handleChange}
-                error={!!errors.mail}
-                helperText={errors.mail}
+                error={!!errors.email}
+                helperText={errors.email}
                 required
               />
             </Grid>
