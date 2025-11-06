@@ -14,16 +14,17 @@ export default function AlumnosDataGrid({ rows, loading, title }) {
   const location = useLocation();
   const [toast, setToast] = useState({ open: false, message: "", severity: "success" });
 
-  const {
-    openEdit,
-    selectedAlumno,
-    formData,
-    saving,
-    handleEditOpen,
-    handleClose,
-    handleFormChange,
-    handleSave,
-  } = useEditAlumno();
+ const {
+  openEdit,
+  selectedAlumno,
+  formData,
+  saving,
+  handleEditOpen,
+  handleClose,
+  handleFormChange,
+  handleCursosChange, 
+  handleSave,
+} = useEditAlumno();
 
   const { 
     openDelete,
@@ -35,13 +36,12 @@ export default function AlumnosDataGrid({ rows, loading, title }) {
   } = useDeleteAlumno();
 
   const handleSuccess = (message) => {
-    // Mostrar toast
-    setToast({ open: true, message, severity: "success" });
-    
+ 
+    setToast({ open: true, message, severity: "success" });   
    
     setTimeout(() => {
       navigate(location.pathname, { replace: true, state: { refresh: Date.now() } });
-      window.location.reload(); // Esto recarga la página
+      window.location.reload(); 
     }, 1000);
   };
 
@@ -81,8 +81,7 @@ export default function AlumnosDataGrid({ rows, loading, title }) {
   return (
     <Box sx={{ width: "90%", margin: "0 auto" }}>
       <Typography
-        variant="h4"
-        sx={{ textAlign: "center", marginBottom: 2, fontWeight: 600 }}
+        variant="h4" className="home-container2"
       >
         {title}
       </Typography>
@@ -122,14 +121,14 @@ export default function AlumnosDataGrid({ rows, loading, title }) {
       </Paper>
 
       <DialogEditAlumno
-        open={openEdit}
-        onClose={handleClose}
-        alumno={selectedAlumno}
-        formData={formData}
-        saving={saving}
-        onChange={handleFormChange}
-        onSave={() => handleSave(handleSuccess)}
-      />
+  open={openEdit}
+  onClose={handleClose}
+  formData={formData}
+  saving={saving}
+  onChange={handleFormChange}
+  onCursosChange={handleCursosChange} // Pasar la nueva función
+  onSave={() => handleSave(handleSuccess)}
+/>
 
       <DialogDeleteAlumno
         open={openDelete}

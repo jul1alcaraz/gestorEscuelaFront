@@ -6,8 +6,10 @@ const Home = () => {
   return (
     <div >
       
+      
       <h1 className="home-container">
-        Bienvenidos al Gestor Escolar
+    ¡Bienvenidos a tu Gestor Escolar!
+      
       </h1>
 
       <Box

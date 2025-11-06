@@ -4,12 +4,22 @@ import { updateAlumno } from "../../../services/SputAlumnos";
 export const useEditAlumno = () => {
   const [openEdit, setOpenEdit] = useState(false);
   const [selectedAlumno, setSelectedAlumno] = useState(null);
-  const [formData, setFormData] = useState({ nombre: "", apellido: "", email: "", cursos: "" });
+  const [formData, setFormData] = useState({
+    nombre: "",
+    apellido: "",
+    email: "",
+    cursos: [],
+  });
   const [saving, setSaving] = useState(false);
 
   const handleEditOpen = (alumno) => {
     setSelectedAlumno(alumno);
-    setFormData({ ...alumno });
+    setFormData({
+      nombre: alumno.nombre || "",
+      apellido: alumno.apellido || "",
+      email: alumno.email || "",
+      cursos: alumno.cursos || [],
+    });
     setOpenEdit(true);
   };
 
@@ -23,25 +33,32 @@ export const useEditAlumno = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSave = async (onSuccessCallback) => {
-    setSaving(true);
+  const handleCursosChange = (newCursos) => {
+    setFormData((prev) => ({ ...prev, cursos: newCursos }));
+  };
+
+  const handleSave = async (onSuccess) => {
     try {
-      const response = await updateAlumno(formData._id, formData);
-      console.log("Respuesta actualización:", response);
-      
-      // Cerramos el diálogo
-      setOpenEdit(false);
-      
-      // Ejecutamos el callback que pasamos desde el componente padre
-      if (onSuccessCallback) {
-        onSuccessCallback("Alumno actualizado exitosamente");
-      }
+      setSaving(true);
+      await updateAlumno(selectedAlumno._id, formData); // Usar updateAlumno
+      onSuccess("Alumno actualizado correctamente");
+      handleClose();
     } catch (error) {
-      console.error("Error al actualizar alumno:", error);
+      console.error("Error al guardar los cambios:", error);
     } finally {
       setSaving(false);
     }
   };
 
-  return { openEdit, selectedAlumno, formData, saving, handleEditOpen, handleClose, handleFormChange, handleSave };
+  return {
+    openEdit,
+    selectedAlumno,
+    formData,
+    saving,
+    handleEditOpen,
+    handleClose,
+    handleFormChange,
+    handleCursosChange,
+    handleSave,
+  };
 };
