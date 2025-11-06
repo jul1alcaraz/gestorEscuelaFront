@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
-import { Paper, Box, Typography, Tooltip, IconButton } from "@mui/material";
+import { Paper, Box, Typography, Tooltip, IconButton, Snackbar, Alert } from "@mui/material";
+import { useNavigate, useLocation } from "react-router-dom";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import DialogEditAlumno from "./componentes/DialogEditAlumno";
@@ -9,6 +10,10 @@ import { useEditAlumno } from "../dataGrid/hooks/UseEditAlumno";
 import { useDeleteAlumno } from "../dataGrid/hooks/UseDeleteAlumno";
 
 export default function AlumnosDataGrid({ rows, loading, title }) {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [toast, setToast] = useState({ open: false, message: "", severity: "success" });
+
   const {
     openEdit,
     selectedAlumno,
@@ -20,7 +25,25 @@ export default function AlumnosDataGrid({ rows, loading, title }) {
     handleSave,
   } = useEditAlumno();
 
-  const { openDelete, handleDeleteOpen, handleDelete } = useDeleteAlumno();
+  const { 
+    openDelete,
+    selectedAlumno: selectedAlumnoDelete,
+    saving: savingDelete,
+    handleDeleteOpen, 
+    handleClose: handleCloseDelete,
+    handleDelete 
+  } = useDeleteAlumno();
+
+  const handleSuccess = (message) => {
+    // Mostrar toast
+    setToast({ open: true, message, severity: "success" });
+    
+   
+    setTimeout(() => {
+      navigate(location.pathname, { replace: true, state: { refresh: Date.now() } });
+      window.location.reload(); // Esto recarga la página
+    }, 1000);
+  };
 
   const columns = [
     { field: "nombre", headerName: "Nombre", flex: 1 },
@@ -69,8 +92,8 @@ export default function AlumnosDataGrid({ rows, loading, title }) {
           rows={rows}
           columns={columns}
           loading={loading}
-          hideFooterPagination // 🔹 quita la paginación
-          hideFooterSelectedRowCount // 🔹 quita el contador de selección
+          hideFooterPagination
+          hideFooterSelectedRowCount
           sx={{
             border: "none",
             "& .MuiDataGrid-columnHeaders": {
@@ -105,15 +128,31 @@ export default function AlumnosDataGrid({ rows, loading, title }) {
         formData={formData}
         saving={saving}
         onChange={handleFormChange}
-        onSave={handleSave}
+        onSave={() => handleSave(handleSuccess)}
       />
+
       <DialogDeleteAlumno
         open={openDelete}
-        onClose={handleClose}
-        alumno={selectedAlumno}
-        saving={saving}
-        onDelete={handleDelete}
+        onClose={handleCloseDelete}
+        alumno={selectedAlumnoDelete}
+        saving={savingDelete}
+        onDelete={() => handleDelete(handleSuccess)}
       />
+
+      <Snackbar 
+        open={toast.open} 
+        autoHideDuration={3000} 
+        onClose={() => setToast({ ...toast, open: false })}
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+      >
+        <Alert 
+          onClose={() => setToast({ ...toast, open: false })} 
+          severity={toast.severity} 
+          sx={{ width: '100%' }}
+        >
+          {toast.message}
+        </Alert>
+      </Snackbar>
     </Box>
   );
 }

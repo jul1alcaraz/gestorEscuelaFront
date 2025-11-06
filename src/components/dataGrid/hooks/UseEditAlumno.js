@@ -23,15 +23,24 @@ export const useEditAlumno = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSave = async () => {
+  const handleSave = async (onSuccessCallback) => {
     setSaving(true);
-    const response = updateAlumno(formData._id, formData);
-    console.log("Actualizando alumno:", formData);
-    console.log(response);
-    setTimeout(() => {
-      setSaving(false);
+    try {
+      const response = await updateAlumno(formData._id, formData);
+      console.log("Respuesta actualización:", response);
+      
+      // Cerramos el diálogo
       setOpenEdit(false);
-    }, 1000);
+      
+      // Ejecutamos el callback que pasamos desde el componente padre
+      if (onSuccessCallback) {
+        onSuccessCallback("Alumno actualizado exitosamente");
+      }
+    } catch (error) {
+      console.error("Error al actualizar alumno:", error);
+    } finally {
+      setSaving(false);
+    }
   };
 
   return { openEdit, selectedAlumno, formData, saving, handleEditOpen, handleClose, handleFormChange, handleSave };

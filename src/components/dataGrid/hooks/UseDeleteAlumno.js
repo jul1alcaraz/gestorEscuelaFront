@@ -1,11 +1,14 @@
 import { useState } from "react";
-import { deleteAlumno } from '../../../services/SdeleteAlumno'
+import { deleteAlumno } from "../../../services/SdeleteAlumno";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export const useDeleteAlumno = () => {
   const [openDelete, setOpenDelete] = useState(false);
   const [selectedAlumno, setSelectedAlumno] = useState(null);
   const [saving, setSaving] = useState(false);
-    const [isResponseOk, setIsResponseOk] = useState(false);
+
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const handleDeleteOpen = (alumno) => {
     setSelectedAlumno(alumno);
@@ -17,14 +20,29 @@ export const useDeleteAlumno = () => {
     setSelectedAlumno(null);
   };
 
-  const handleDelete = async () => {
+  const handleDelete = async (onSuccessCallback) => {
+    if (!selectedAlumno) return;
     setSaving(true);
-    const response = deleteAlumno(selectedAlumno.nombre);
-    console.log("Eliminando alumno:", selectedAlumno.nombre);
-    setTimeout(() => {
-      setSaving(false);
+    try {
+      const response = await deleteAlumno(selectedAlumno._id); 
+      console.log("Respuesta eliminación:", response);
+
       setOpenDelete(false);
-    }, 1000);
+
+      if (onSuccessCallback) {
+        onSuccessCallback(
+          `Alumno ${selectedAlumno.nombre} ${selectedAlumno.apellido} eliminado correctamente`
+        );
+      }
+
+      setTimeout(() => {
+        navigate(location.pathname, { replace: true, state: { refresh: Date.now() } });
+      }, 1000);
+    } catch (error) {
+      console.error("Error al eliminar alumno:", error);
+    } finally {
+      setSaving(false);
+    }
   };
 
   return { openDelete, selectedAlumno, saving, handleDeleteOpen, handleClose, handleDelete };
