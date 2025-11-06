@@ -5,7 +5,6 @@ import {
   Button,
   Paper,
   Container,
-  Alert,
   CircularProgress,
   Grid,
   MenuItem,
@@ -14,6 +13,8 @@ import {
   FormControl,
   Chip,
   OutlinedInput,
+  Snackbar,
+  Alert,
 } from "@mui/material";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
@@ -26,6 +27,8 @@ const CargarAlumnos = () => {
     formData,
     errors,
     loading,
+    toast,
+    setToast,
     handleChange,
     handleCursosChange,
     handleSubmit,
@@ -34,25 +37,13 @@ const CargarAlumnos = () => {
   const cursosOpciones = ["Arte", "Matemática", "Historia", "Ciencias"];
 
   return (
-    <Container
-      sx={{
-        alignItems: "center",
-        justifyContent: "center",
-        minHeight: "80vh",
-      }}
-    >
+    <Container sx={{ alignItems: "center", justifyContent: "center", minHeight: "80vh" }}>
       <Paper className="gestion-form-container">
         <Box sx={{ textAlign: "center" }}>
           <InboxIcon sx={{ fontSize: 88, mb: 2 }} />
-          <h2>Formulario de Consulta</h2>
-          <p>Complete el formulario para enviar su consulta.</p>
+          <h2>Formulario de Carga</h2>
+          <p>Complete el formulario para agregar un nuevo alumno.</p>
         </Box>
-
-        {errors.submit && (
-          <Alert severity="error" sx={{ mb: 3 }}>
-            {errors.submit}
-          </Alert>
-        )}
 
         <Box component="form" onSubmit={handleSubmit} noValidate>
           <Grid className="gestion-form-grid">
@@ -100,12 +91,7 @@ const CargarAlumnos = () => {
 
             {/* Cursos */}
             <Grid item>
-              <FormControl
-                fullWidth
-                required
-                error={!!errors.cursos}
-                variant="outlined"
-              >
+              <FormControl fullWidth required error={!!errors.cursos} variant="outlined">
                 <InputLabel id="cursos-label">Curso(s)</InputLabel>
                 <Select
                   labelId="cursos-label"
@@ -144,9 +130,7 @@ const CargarAlumnos = () => {
                 className="gestion-button-success-box"
                 type="submit"
                 disabled={loading}
-                startIcon={
-                  loading ? <CircularProgress size={20} /> : <SendIcon />
-                }
+                startIcon={loading ? <CircularProgress size={20} /> : <SendIcon />}
               >
                 {loading ? "Enviando..." : "Cargar nuevo alumno"}
               </Button>
@@ -155,7 +139,7 @@ const CargarAlumnos = () => {
         </Box>
       </Paper>
 
-      {/* 🔽 Botón para ir a Todos los Alumnos */}
+      {/* Botón para ir a Todos los Alumnos */}
       <Box sx={{ display: "flex", justifyContent: "center", mt: 3 }}>
         <Button
           component={Link}
@@ -175,6 +159,22 @@ const CargarAlumnos = () => {
           Ver todos los alumnos
         </Button>
       </Box>
+
+      {/* ✅ Snackbar Toast */}
+      <Snackbar
+        open={toast.open}
+        autoHideDuration={3000}
+        onClose={() => setToast({ ...toast, open: false })}
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+      >
+        <Alert
+          onClose={() => setToast({ ...toast, open: false })}
+          severity={toast.severity}
+          sx={{ width: "100%" }}
+        >
+          {toast.message}
+        </Alert>
+      </Snackbar>
     </Container>
   );
 };

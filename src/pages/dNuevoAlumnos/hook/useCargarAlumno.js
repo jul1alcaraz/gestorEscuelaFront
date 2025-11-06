@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { postAlumno } from "../../../services/SpostAlumno"; 
+import { postAlumno } from "../../../services/SpostAlumno";
+
 export const useCargarAlumnos = () => {
   const [formData, setFormData] = useState({
     nombre: "",
@@ -10,6 +11,7 @@ export const useCargarAlumnos = () => {
 
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
+  const [toast, setToast] = useState({ open: false, message: "", severity: "success" });
 
   // --- Validar el formulario ---
   const validateForm = () => {
@@ -44,7 +46,9 @@ export const useCargarAlumnos = () => {
     setLoading(true);
     try {
       await postAlumno(formData);
-      alert("✅ Alumno cargado con éxito");
+
+      // ✅ Mostrar toast de éxito
+      setToast({ open: true, message: "✅ Alumno cargado con éxito", severity: "success" });
 
       // Resetear formulario
       setFormData({
@@ -56,7 +60,13 @@ export const useCargarAlumnos = () => {
       setErrors({});
     } catch (error) {
       console.error("Error al cargar alumno:", error);
-      setErrors({ submit: "Error al cargar el alumno. Intente nuevamente." });
+
+      // ❌ Mostrar toast de error
+      setToast({
+        open: true,
+        message: "Error al cargar el alumno. Intente nuevamente.",
+        severity: "error",
+      });
     } finally {
       setLoading(false);
     }
@@ -66,6 +76,8 @@ export const useCargarAlumnos = () => {
     formData,
     errors,
     loading,
+    toast,
+    setToast,
     handleChange,
     handleCursosChange,
     handleSubmit,

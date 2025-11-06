@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { getTodosLosAlumnos } from "../../../services/SgetAlumnos";
+import { useSearch } from "../../../context/SearchContext";
 
 export const useTodosLosAlumnos = () => {
+  const { searchTerm } = useSearch();
   const [rows, setRows] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -17,7 +19,16 @@ export const useTodosLosAlumnos = () => {
           id: alumno._id,
         }));
 
-        setRows(alumnosConId);
+        // ✅ Filtrar por nombre o apellido si hay búsqueda
+        const filtrados = searchTerm
+          ? alumnosConId.filter((a) =>
+              `${a.nombre} ${a.apellido}`
+                .toLowerCase()
+                .includes(searchTerm.toLowerCase())
+            )
+          : alumnosConId;
+
+        setRows(filtrados);
         setError(null);
       } catch (error) {
         console.error("Error al cargar alumnos:", error);
@@ -28,7 +39,7 @@ export const useTodosLosAlumnos = () => {
     };
 
     fetchData();
-  }, []);
+  }, [searchTerm]); // 👈 se vuelve a ejecutar al buscar
 
   return { rows, loading, error };
 };

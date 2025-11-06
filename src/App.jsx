@@ -6,11 +6,13 @@ import CargarAlumnos from "./pages/dNuevoAlumnos/CargarAlumnos";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { ThemeProvider } from "./context/ThemeContext";
+import { SearchProvider } from "./context/SearchContext";
 import "./App.css";
 
 const App = () => {
   return (
     <ThemeProvider>
+      <SearchProvider>
       <>
         <Header />
 
@@ -41,6 +43,7 @@ const App = () => {
 
         <Footer />
       </>
+      </SearchProvider>
     </ThemeProvider>
   );
 };

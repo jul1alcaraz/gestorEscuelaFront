@@ -8,15 +8,14 @@ import SearchIcon from "@mui/icons-material/Search";
 import { orange } from "@mui/material/colors";
 import MenuDrawer from "./MenuDrawer";
 import BotonTheme from "./BotonTheme";
-
+import { useSearch } from "../context/SearchContext";
+import { useNavigate } from "react-router-dom";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
   backgroundColor: alpha(orange[900], 0.15),
-  "&:hover": {
-    backgroundColor: alpha(orange[50], 0.25),
-  },
+  "&:hover": { backgroundColor: alpha(orange[50], 0.25) },
   marginLeft: 0,
   width: "100%",
   [theme.breakpoints.up("sm")]: {
@@ -45,36 +44,44 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     transition: theme.transitions.create("width"),
     [theme.breakpoints.up("sm")]: {
       width: "12ch",
-      "&:focus": {
-        width: "20ch",
-      },
+      "&:focus": { width: "20ch" },
     },
   },
 }));
 
 function Header() {
+  const { setSearchTerm } = useSearch();
+  const navigate = useNavigate();
+  const [inputValue, setInputValue] = React.useState("");
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      setSearchTerm(inputValue.trim());
+      navigate("/TodosLosAlumnos");
+    }
+  };
+
   return (
     <AppBar position="fixed"
-      sx={{
-        backgroundColor: "var(--color-verde-oscuro)",
-        zIndex: 1200, // más alto que el footer
-      }}>
+      sx={{ backgroundColor: "var(--color-verde-oscuro)", zIndex: 1200 }}>
       <Toolbar>
         <MenuDrawer />
-       
-<Box sx={{ ml: "auto" }}>
-  <BotonTheme />
-</Box>
-
+        <Box sx={{ ml: "auto" }}>
+          <BotonTheme />
+        </Box>
 
         <Box sx={{ marginLeft: "auto" }}>
-          <Search >
+          <Search>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
             <StyledInputBase
-              placeholder="Buscar…"
+              placeholder="Buscar alumno…"
               inputProps={{ "aria-label": "search" }}
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
+              onKeyDown={handleKeyDown}
             />
           </Search>
         </Box>
