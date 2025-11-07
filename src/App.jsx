@@ -25,22 +25,11 @@ const App = () => {
                
               </>
             }
-          />
-
-          {/* ✅ Listado de alumnos */}
+          />    
           <Route path="/TodosLosAlumnos" element={<TodosLosAlumnos />} />
-
-          {/* ✅ Cursos */}
           <Route path="/Cursos" element={<Cursos />} />
-
-          {/* ✅ Cargar nuevo alumno */}
           <Route path="/Cargar" element={<CargarAlumnos />} />
-
-          {/* ✅ Nueva ruta para editar alumno */}
-         {/* <Route path="/editar/:id" element={<EditarAlumno />} ></Route>*/}
-         
         </Routes>
-
         <Footer />
       </>
       </SearchProvider>

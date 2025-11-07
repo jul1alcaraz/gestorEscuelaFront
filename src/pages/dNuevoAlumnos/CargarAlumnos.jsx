@@ -1,20 +1,6 @@
 import React from "react";
-import {
-  Box,
-  TextField,
-  Button,
-  Paper,
-  Container,
-  CircularProgress,
-  Grid,
-  MenuItem,
-  Select,
-  InputLabel,
-  FormControl,
-  Chip,
-  OutlinedInput,
-  Snackbar,
-  Alert,
+import {  Box, TextField, Button, Paper, Container, CircularProgress, Grid, MenuItem,
+  Select, InputLabel, FormControl, Chip, OutlinedInput, Snackbar, Alert,
 } from "@mui/material";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
@@ -37,17 +23,16 @@ const CargarAlumnos = () => {
   const cursosOpciones = ["Arte", "Matemática", "Historia", "Ciencias"];
 
   return (
-    <Container sx={{ alignItems: "center", justifyContent: "center", minHeight: "80vh" }}>
-      <Paper className="gestion-form-container">
+    <Container sx={{ alignItems: "center", justifyContent: "center", minHeight: "80vh" }} >
+      <Paper>
         <Box sx={{ textAlign: "center" }}>
           <InboxIcon sx={{ fontSize: 88, mb: 2 }} />
           <h2>Formulario de Carga</h2>
-          <p>Complete el formulario para agregar un nuevo alumno.</p>
+          <p>Complete el formulario para agregar un nuevo alumno 📝.</p>
         </Box>
 
         <Box component="form" onSubmit={handleSubmit} noValidate>
           <Grid className="gestion-form-grid">
-            {/* Nombre */}
             <Grid item>
               <TextField
                 fullWidth
@@ -61,7 +46,6 @@ const CargarAlumnos = () => {
               />
             </Grid>
 
-            {/* Apellido */}
             <Grid item>
               <TextField
                 fullWidth
@@ -75,7 +59,6 @@ const CargarAlumnos = () => {
               />
             </Grid>
 
-            {/* Mail */}
             <Grid item>
               <TextField
                 fullWidth
@@ -89,11 +72,10 @@ const CargarAlumnos = () => {
               />
             </Grid>
 
-            {/* Cursos */}
             <Grid item>
               <FormControl fullWidth required error={!!errors.cursos} variant="outlined">
-                <InputLabel id="cursos-label">Curso(s)</InputLabel>
-                <Select
+                <InputLabel id="cursos-label" >Curso(s)</InputLabel>
+                <Select 
                   labelId="cursos-label"
                   name="cursos"
                   multiple
@@ -101,7 +83,8 @@ const CargarAlumnos = () => {
                   onChange={handleCursosChange}
                   input={<OutlinedInput label="Curso(s)" />}
                   renderValue={(selected) => (
-                    <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
+
+                    <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }} >
                       {selected.map((value) => (
                         <Chip key={value} label={value} />
                       ))}
@@ -115,7 +98,7 @@ const CargarAlumnos = () => {
                   ))}
                 </Select>
                 {errors.cursos && (
-                  <Box sx={{ color: "#d32f2f", fontSize: "0.75rem", mt: 1 }}>
+                  <Box sx={{ color: "#d32f2f", fontSize: "0.75rem", mt: 1 }}  >
                     {errors.cursos}
                   </Box>
                 )}
@@ -123,7 +106,6 @@ const CargarAlumnos = () => {
             </Grid>
           </Grid>
 
-          {/* Botón de enviar */}
           <Grid className="gestion-button-container">
             <Box>
               <Button
@@ -139,7 +121,6 @@ const CargarAlumnos = () => {
         </Box>
       </Paper>
 
-      {/* Botón para ir a Todos los Alumnos */}
       <Box sx={{ display: "flex", justifyContent: "center", mt: 3 }}>
         <Button
           component={Link}
@@ -160,7 +141,6 @@ const CargarAlumnos = () => {
         </Button>
       </Box>
 
-      {/* ✅ Snackbar Toast */}
       <Snackbar
         open={toast.open}
         autoHideDuration={3000}

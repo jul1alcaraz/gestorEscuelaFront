@@ -12,7 +12,7 @@ export default function AlumnosPorCurso({ curso }) {
   if (!curso)
     return (
       <Typography variant="h6" sx={{ textAlign: "center", mt: 3 }}>
-        Selecciona un curso para ver los alumnos
+        Selecciona un curso para ver los alumnos 📚
       </Typography>
     );
 

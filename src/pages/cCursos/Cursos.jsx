@@ -12,7 +12,6 @@ const cursos = ["Matemática", "Historia", "Ciencias", "Arte"];
 export default function Cursos() {
   const [cursoSeleccionado, setCursoSeleccionado] = useState("");
 
-  // Hook para traer los alumnos del curso seleccionado
   const { rows, loading, error } = useAlumnosPorCurso(cursoSeleccionado);
 
   const handleEdit = (row) => console.log("Editar:", row);
@@ -44,7 +43,6 @@ export default function Cursos() {
         ))}
       </Box>
 
-      {/* DataGrid que muestra los alumnos del curso seleccionado */}
       {cursoSeleccionado && (
         <AlumnosGrid
           rows={rows}
@@ -55,14 +53,11 @@ export default function Cursos() {
         />
       )}
 
-      {/* Mensaje si no hay alumnos */}
       {cursoSeleccionado && !loading && rows.length === 0 && (
         <Typography variant="h6" sx={{ textAlign: "center", mt: 2 }}>
           No hay alumnos inscriptos en {cursoSeleccionado}.
         </Typography>
       )}
-
-      {/* Error */}
       {error && (
         <Typography color="error" sx={{ textAlign: "center", mt: 2 }}>
           {error}

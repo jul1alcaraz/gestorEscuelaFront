@@ -7,17 +7,17 @@ function Footer() {
   return (
     <Paper
       sx={{
-        position: "fixed",      // 👈 Fija el footer
-        bottom: 0,              // 👈 Lo coloca al fondo
+        position: "fixed",     
+        bottom: 0,             
         left: 0,
-        width: "100vw",         // Ocupa todo el ancho de la pantalla
+        width: "100vw",        
         textAlign: "center",
         alignItems: "center",
         color: "white",
-        backgroundColor: "var(--color-verde-oscuro)", // mantiene tu paleta
+        backgroundColor: "var(--color-verde-oscuro)", 
         padding: "0.5rem 0",
         zIndex: 1000,
-        borderTop: "2px solid var(--color-rosa)", // pequeño detalle estético
+        borderTop: "2px solid var(--color-rosa)", 
       }}
       square
       variant="outlined"

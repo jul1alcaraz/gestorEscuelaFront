@@ -80,11 +80,12 @@ export default function AlumnosDataGrid({ rows, loading, title }) {
 
   return (
     <Box sx={{ width: "90%", margin: "0 auto" }}>
-      <Typography
-        variant="h4" className="home-container2"
-      >
-        {title}
+      <div className=" h2-container2">
+      <Typography 
+        variant="h4">
+        {title} 📝
       </Typography>
+      </div>
 
       <Paper sx={{ height: 420, width: "100%", position: "relative" }}>
         <DataGrid
@@ -126,7 +127,7 @@ export default function AlumnosDataGrid({ rows, loading, title }) {
   formData={formData}
   saving={saving}
   onChange={handleFormChange}
-  onCursosChange={handleCursosChange} // Pasar la nueva función
+  onCursosChange={handleCursosChange} 
   onSave={() => handleSave(handleSuccess)}
 />
 

@@ -1,16 +1,6 @@
 import React from "react";
-import {
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-  TextField,
-  Button,
-  CircularProgress,
-  Box,
-  Chip,
-  Autocomplete,
-} from "@mui/material";
+import {  Dialog,  DialogTitle,  DialogContent,  DialogActions,  TextField,  Button,  CircularProgress,  Box,
+  Chip, Autocomplete} from "@mui/material";
 
 const cursosDisponibles = ["Arte", "Matemática", "Historia", "Ciencias"];
 
@@ -20,12 +10,12 @@ export default function DialogEditarAlumno({
   formData, 
   saving, 
   onChange, 
-  onCursosChange, // Nueva prop
+  onCursosChange,
   onSave 
 }) {
   return (
     <Dialog open={open} onClose={onClose} fullWidth maxWidth="sm">
-      <DialogTitle>Editar Alumno</DialogTitle>
+      <DialogTitle>Editar Alumno✍🏻️</DialogTitle>
       <DialogContent>
         <TextField
           margin="dense"

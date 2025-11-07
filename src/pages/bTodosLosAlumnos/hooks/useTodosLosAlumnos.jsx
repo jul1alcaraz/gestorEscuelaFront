@@ -19,7 +19,6 @@ export const useTodosLosAlumnos = () => {
           id: alumno._id,
         }));
 
-        // ✅ Filtrar por nombre o apellido si hay búsqueda
         const filtrados = searchTerm
           ? alumnosConId.filter((a) =>
               `${a.nombre} ${a.apellido}`
@@ -39,7 +38,7 @@ export const useTodosLosAlumnos = () => {
     };
 
     fetchData();
-  }, [searchTerm]); // 👈 se vuelve a ejecutar al buscar
+  }, [searchTerm]); 
 
   return { rows, loading, error };
 };

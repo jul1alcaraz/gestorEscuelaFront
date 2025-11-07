@@ -7,14 +7,13 @@ export const useAlumnosPorCurso = (curso) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (!curso) return; // No hace nada si no hay curso seleccionado
+    if (!curso) return; 
 
     const fetchData = async () => {
       try {
         setLoading(true);
         const data = await getAlumnosPorCurso(curso);
 
-        // Agregamos un campo "id" para DataGrid
         const alumnosConId = data.map((alumno) => ({
           ...alumno,
           id: alumno._id,

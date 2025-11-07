@@ -13,7 +13,6 @@ export const useCargarAlumnos = () => {
   const [loading, setLoading] = useState(false);
   const [toast, setToast] = useState({ open: false, message: "", severity: "success" });
 
-  // --- Validar el formulario ---
   const validateForm = () => {
     const newErrors = {};
     if (!formData.nombre.trim()) newErrors.nombre = "El nombre es obligatorio";
@@ -24,7 +23,6 @@ export const useCargarAlumnos = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  // --- Manejadores de cambio ---
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -38,7 +36,6 @@ export const useCargarAlumnos = () => {
     }));
   };
 
-  // --- Enviar formulario ---
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validateForm()) return;
@@ -47,10 +44,8 @@ export const useCargarAlumnos = () => {
     try {
       await postAlumno(formData);
 
-      // ✅ Mostrar toast de éxito
       setToast({ open: true, message: "✅ Alumno cargado con éxito", severity: "success" });
 
-      // Resetear formulario
       setFormData({
         nombre: "",
         apellido: "",
@@ -61,7 +56,7 @@ export const useCargarAlumnos = () => {
     } catch (error) {
       console.error("Error al cargar alumno:", error);
 
-      // ❌ Mostrar toast de error
+
       setToast({
         open: true,
         message: "Error al cargar el alumno. Intente nuevamente.",

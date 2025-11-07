@@ -26,7 +26,7 @@ const Home = () => {
               <CardActionArea component={Link} to="/TodosLosAlumnos">
                 <CardContent>
                   <Typography gutterBottom variant="h5" component="div">
-                    Todos los alumnos
+                    Todos los alumnos 👩‍🎓
                   </Typography>
                 </CardContent>
               </CardActionArea>
@@ -37,7 +37,7 @@ const Home = () => {
               <CardActionArea component={Link} to="/Cursos">
                 <CardContent>
                   <Typography gutterBottom variant="h5" component="div">
-                    Cursos
+                    Cursos 📚
                   </Typography>
                 </CardContent>
               </CardActionArea>

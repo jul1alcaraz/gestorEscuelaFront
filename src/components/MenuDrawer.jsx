@@ -13,6 +13,7 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
 import BungalowIcon from '@mui/icons-material/Bungalow';
+import AddIcon from '@mui/icons-material/Add';
 
 
 function MenuDrawer() {
@@ -35,7 +36,7 @@ function MenuDrawer() {
 >
   <List >
     {menu.map(({ path, name }, index) => {
-      const icons = [<BungalowIcon />, <AutoFixHighIcon />, <InboxIcon />];
+      const icons = [<BungalowIcon />, <AutoFixHighIcon />, <InboxIcon />, <AddIcon/>];
       return (
         <ListItem  key={path} disablePadding>
           <ListItemButton component={Link} to={path}>

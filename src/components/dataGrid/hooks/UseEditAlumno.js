@@ -40,7 +40,7 @@ export const useEditAlumno = () => {
   const handleSave = async (onSuccess) => {
     try {
       setSaving(true);
-      await updateAlumno(selectedAlumno._id, formData); // Usar updateAlumno
+      await updateAlumno(selectedAlumno._id, formData); 
       onSuccess("Alumno actualizado correctamente");
       handleClose();
     } catch (error) {

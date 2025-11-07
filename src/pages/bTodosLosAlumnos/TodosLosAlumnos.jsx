@@ -48,7 +48,7 @@ export default function TodosLosAlumnos() {
             py: 1.5,
           }}
         >
-          Cargar nuevos alumnos
+          Cargar nuevos alumnos 
         </Button>
       </Box>
     </Box>

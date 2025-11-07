@@ -12,7 +12,7 @@ import {
 export default function DialogDeleteAlumno({ open, onClose, alumno, saving, onDelete }) {
   return (
     <Dialog open={open} onClose={onClose} fullWidth maxWidth="xs">
-      <DialogTitle>Eliminar Alumno</DialogTitle>
+      <DialogTitle>Eliminar Alumno🚮</DialogTitle>
 
       <DialogContent>
         <Typography>
