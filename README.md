@@ -73,7 +73,7 @@ src/
 
 1️⃣ Clonar el repositorio
 
-git clone <repo-url>
+git clone <https://github.com/jul1alcaraz/gestorEscuelaFront.git>
 
 
 2️⃣ Instalar dependencias
@@ -86,10 +86,8 @@ npm install
 npm run dev
 
 🧭 Rutas principales
-Ruta	Descripción
-/	Página principal con bienvenida e información general
-/alumnos	Listado completo de alumnos
-/alumnos/agregar	Alta de nuevos alumnos
-/alumnos/editar/:id	Edición de alumno mediante diálogo
-/alumnos/eliminar/:id	Eliminación con confirmación
-/cursos	Administración de cursos disponibles
+Ruta	                    Descripción
+/	                        Página principal con bienvenida e información general
+/TodosLosAlumnos	        Listado completo de alumnos
+/Cargar	                    Alta de nuevos alumnos
+/Cursos	                    Administración de cursos disponibles
